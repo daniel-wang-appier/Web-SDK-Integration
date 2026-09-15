@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>商品詳情 | Mori Market</title>
+    <meta name="description" content="查看 Mori Market 商品詳情與加入購物車資訊。" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="product">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="index.html" class="brand" aria-label="Mori Market 首頁">
+          <span class="brand__mark">M</span>
+          <span>Mori Market</span>
+        </a>
+        <nav class="site-header__nav" aria-label="主要導覽">
+          <a href="index.html">首頁</a>
+          <a href="cart.html" class="cart-link" aria-label="前往購物車">
+            <span>購物車</span>
+            <span class="cart-badge" data-cart-count aria-live="polite" hidden>0</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="product-detail" data-product-detail></div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

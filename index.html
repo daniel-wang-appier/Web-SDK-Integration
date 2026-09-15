@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mori Market</title>
+    <meta name="description" content="Mori Market 電商示範站，瀏覽日常居家與隨身選物。" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="home">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="index.html" class="brand" aria-label="Mori Market 首頁">
+          <span class="brand__mark">M</span>
+          <span>Mori Market</span>
+        </a>
+        <nav class="site-header__nav" aria-label="主要導覽">
+          <a href="index.html">首頁</a>
+          <a href="cart.html" class="cart-link" aria-label="前往購物車">
+            <span>購物車</span>
+            <span class="cart-badge" data-cart-count aria-live="polite" hidden>0</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="hero__content">
+            <p class="hero__eyebrow">簡約生活選物</p>
+            <h1>讓每一個日常都更自在。</h1>
+            <p>從桌邊閱讀、晨間泡茶到收納與休息，Mori Market 聚集生活裡的細節好物，讓留下的每一件選擇都更有溫度。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>全部商品</h2>
+            <div class="filter-bar" aria-label="商品分類篩選">
+              <button class="filter-btn is-active" type="button" data-filter="全部" aria-pressed="true">全部</button>
+              <button class="filter-btn" type="button" data-filter="餐廚" aria-pressed="false">餐廚</button>
+              <button class="filter-btn" type="button" data-filter="香氛" aria-pressed="false">香氛</button>
+              <button class="filter-btn" type="button" data-filter="隨身" aria-pressed="false">隨身</button>
+              <button class="filter-btn" type="button" data-filter="居家" aria-pressed="false">居家</button>
+              <button class="filter-btn" type="button" data-filter="文具" aria-pressed="false">文具</button>
+            </div>
+          </div>
+          <div class="product-grid" data-product-grid></div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

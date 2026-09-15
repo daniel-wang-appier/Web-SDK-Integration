@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>購物車 | Mori Market</title>
+    <meta name="description" content="查看 Mori Market 購物車與結帳資訊。" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="cart">
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a href="index.html" class="brand" aria-label="Mori Market 首頁">
+          <span class="brand__mark">M</span>
+          <span>Mori Market</span>
+        </a>
+        <nav class="site-header__nav" aria-label="主要導覽">
+          <a href="index.html">首頁</a>
+          <a href="cart.html" class="cart-link" aria-label="前往購物車">
+            <span>購物車</span>
+            <span class="cart-badge" data-cart-count aria-live="polite" hidden>0</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container cart-layout">
+      <section aria-labelledby="cart-heading">
+        <div class="section-header">
+          <h1 id="cart-heading">購物車</h1>
+        </div>
+        <div class="cart-items" data-cart-items></div>
+      </section>
+
+      <aside aria-labelledby="summary-heading">
+        <div class="section-header">
+          <h2 id="summary-heading">訂單摘要</h2>
+        </div>
+        <div data-cart-summary></div>
+      </aside>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
