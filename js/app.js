@@ -7,6 +7,17 @@ const currencyFormatter = new Intl.NumberFormat('zh-TW', {
   maximumFractionDigits: 0,
 });
 
+const logAppierEvent = (eventName, parameters = {}, valueToSum) => {
+  if (typeof window.appier !== 'function') return;
+
+  if (typeof valueToSum === 'number') {
+    window.appier('event', eventName, parameters, valueToSum);
+    return;
+  }
+
+  window.appier('event', eventName, parameters);
+};
+
 const updateCartBadges = () => {
   const count = getCartCount();
   document.querySelectorAll('[data-cart-count]').forEach((badge) => {
@@ -122,12 +133,26 @@ const initProductPage = () => {
     </div>
   `;
 
+  logAppierEvent('product_viewed', {
+    product_id: product.id,
+    product_name: product.name,
+    category: product.category,
+    product_price: product.price,
+  });
+
   const quantityInput = document.querySelector('#quantity');
   const addButton = document.querySelector('#add-to-cart-button');
 
   addButton.addEventListener('click', () => {
     const quantity = Math.max(1, Number(quantityInput.value) || 1);
     addToCart(product.id, quantity);
+    logAppierEvent('product_added_to_cart', {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+      quantity,
+      product_price: product.price,
+    }, product.price * quantity);
     updateCartBadges();
     showToast(`${product.name} 已加入購物車`);
   });
@@ -283,6 +308,29 @@ const initCheckoutPage = () => {
       }
 
       const orderCode = `MM-${String(Date.now()).slice(-6)}`;
+      const subtotal = getSubtotal();
+      const shipping = getShippingFee();
+      const total = getTotal();
+
+      cartItems.forEach((item) => {
+        logAppierEvent('product_purchased', {
+          product_id: item.productId,
+          product_name: item.product.name,
+          category: item.product.category,
+          quantity: item.quantity,
+          product_price: item.product.price,
+          order_id: orderCode,
+        }, item.product.price * item.quantity);
+      });
+
+      logAppierEvent('checkout_completed', {
+        order_id: orderCode,
+        item_count: cartItems.reduce((count, item) => count + item.quantity, 0),
+        subtotal,
+        shipping_fee: shipping,
+        total,
+      }, total);
+
       clearCart();
       updateCartBadges();
       if (orderSuccess) orderSuccess.hidden = false;
